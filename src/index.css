@@ -8,3 +8,14 @@
 	
 }
 
+
+@font-face {
+	font-family: "Rajdhani-Regular";
+	src: local("Rajdhani-Regular"),
+	url("./fonts/Rajdhani-Regular.ttf") format("epentype");
+		font-weight: normal;
+}
+
+.font {
+	font-family: "Rajdhani-Regular";
+}

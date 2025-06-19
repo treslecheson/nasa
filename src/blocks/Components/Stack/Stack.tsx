@@ -3,8 +3,55 @@
 */
 
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Stack.css";
+
+const apiKey = import.meta.env.VITE_NASA_API_KEY
+const apiURL = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
+
+function getFormattedDate(date: Date): string {
+	const year = date.getFullYear();
+	const month = (date.getMonth() + 1).toString().padStart(2, '0');
+	const day = date.getDate().toString().padStart(2, '0');
+
+	return `${year}-${month}-${day}`;
+}
+
+const getWeekDates = (): string[] => {
+	const currentDate: Date = new Date
+	const oneDayAgo = new Date(currentDate);
+
+	const twoDayAgo = new Date(currentDate);
+	const threeDayAgo = new Date(currentDate);
+	const fourDayAgo = new Date(currentDate);
+	const fiveDayAgo = new Date(currentDate);
+	const sixDayAgo = new Date(currentDate);
+
+	oneDayAgo.setDate(currentDate.getDate() - 1)
+	twoDayAgo.setDate(currentDate.getDate() - 2)
+	threeDayAgo.setDate(currentDate.getDate() - 3)
+	fourDayAgo.setDate(currentDate.getDate() - 4)
+	fiveDayAgo.setDate(currentDate.getDate() - 5)
+	sixDayAgo.setDate(currentDate.getDate() - 6)
+	const dates: string[] = [getFormattedDate(currentDate), getFormattedDate(oneDayAgo), getFormattedDate(twoDayAgo), getFormattedDate(threeDayAgo), getFormattedDate(fourDayAgo), getFormattedDate(fiveDayAgo), getFormattedDate(sixDayAgo),]
+	return dates
+}
+
+
+
+type ApodResponse = {
+	url: string
+}
+
+
+
+
+
+
+
+
+
+
 
 interface CardRotateProps {
 	children: React.ReactNode;
@@ -54,6 +101,8 @@ interface StackProps {
 	animationConfig?: { stiffness: number; damping: number };
 }
 
+
+
 export default function Stack({
 	randomRotation = false,
 	sensitivity = 200,
@@ -62,20 +111,38 @@ export default function Stack({
 	animationConfig = { stiffness: 260, damping: 20 },
 	sendToBackOnClick = false,
 }: StackProps) {
+
+
+
+	useEffect(() => {
+
+		const fetchImages = async (weekDates: string[]) => {
+
+			const imageList = [];
+			for (let i = 0; i < weekDates.length; i++) {
+				try {
+					const response = await fetch(`${apiURL}&date=${weekDates[i]}`)
+					if (!response.ok) {
+						throw new Error(`Response status: ${response.status}`)
+					}
+					const data: ApodResponse = await response.json()
+					const image = { id: i + 1, img: data.url }
+					imageList.push(image)
+				} catch (error) {
+					console.error(`Error fetching image ${i + 1}`, error)
+				}
+			}
+			console.log(imageList)
+			setCards(imageList)
+			return imageList
+		}
+		fetchImages(getWeekDates())
+	}, [])
+
 	const [cards, setCards] = useState(
 		cardsData.length
 			? cardsData
-			: [
-				{
-					id: 1,
-					img: "https://apod.nasa.gov/apod/image/2506/NGC3344_hst2048.jpg",
-				},
-				{
-					id: 2,
-					img: "https://apod.nasa.gov/apod/image/2506/RosettaDeepRed_Mendez_960.jpg",
-				},
-			],
-	);
+			: []);
 
 	const sendToBack = (id: number) => {
 		setCards((prev) => {

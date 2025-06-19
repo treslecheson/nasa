@@ -1,38 +1,71 @@
+import { useEffect, useState } from "react"
 import Stack from "./blocks/Components/Stack/Stack"
 import Link from "./components/Link"
 import Navbar from "./components/Navbar"
 
+
+
+
+
+
+
+
 const App = () => {
+
+	const [theme, setTheme] = useState<string>("light")
+
+	useEffect(() => {
+		let currentTheme = localStorage.getItem("theme") || "light"
+		setTheme(currentTheme)
+	})
+
+
+
+
+
+
 	return (
 		<>
 
 			<Navbar />
 
-			<div data-theme="dark" className="bg-white flex-col p-10  dark:bg-primary py-2 ">
-				<div className="p-56 w-dwv bg-[url(../src/assets/space.jpg)]">
-					<h1 className="flex justify-center text-4xl font-extrabold dark:text-white mt-25">Astronomy Adventure</h1>
+			<div data-theme={theme} className="bg-white flex-col  p-10  dark:bg-primary py-2 font">
+				<div className="p-56 bg-[url(../src/assets/space.jpg)] bg-cover font">
+					<h1 className="flex justify-center text-8xl font-extrabold text-white ">Astronomy Adventure</h1>
 				</div>
-				<h1 className="flex justify-center text-4xl font-extrabold dark:text-white mt-25">Astronomy Pictures of The Week</h1>
+				<h1 className="flex justify-center text-5xl font-extrabold dark:text-white mt-16 mb-10">Astronomy Pictures of The Week</h1>
 
-				<div className="flex justify-center mt-5">
+				<div className="flex justify-center ">
 					<Stack />
 				</div>
-				<Link linkText="Explore past and present Astronomy Pictures" />
-
-				<h1 className="flex justify-center text-4xl font-extrabold dark:text-white mt-25">Mars</h1>
-				<div className="flex justify-center mt-5">
-					<img src="../src/assets/mar-cutout.png" width="300vw" height="300vh" />
+				<div className="flex justify-center">
+					<Link linkText="Explore Astoronmy Pictures" />
 				</div>
 
-				<Link linkText="Explore Mars" />
 
-				<h1 className="flex justify-center text-4xl font-extrabold dark:text-white mt-25">Favorites</h1>
-				<Link linkText="Explore Favorites" />
+				<div className="flex justify-center mt-16 mb-16">
+					<div className="flex flex-col m-18">
+						<h1 className="flex flex-start text-5xl font-extrabold dark:text-white mb-10">Mars</h1>
+						<p className="dark:text-white">Mars is the fourth planet from the Sun in our solar system. Often called the "Red Planet" because of its reddish appearance due to iron oxide (rust) on its surface. Here you can explore pictures of Mars and it's rovers.</p>
+						<div className="flex flex-row">
+							<div className="flex justify-center ">
+								<Link linkText="Explore Mars" />
+							</div>
+						</div>
+					</div>
 
-				<button id="theme-toggle" type="button" className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-					<svg id="theme-toggle-dark-icon" className="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-					<svg id="theme-toggle-light-icon" className="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-				</button>
+
+
+					<div className="flex flex-col m-18">
+						<h1 className="flex flex-start text-5xl font-extrabold dark:text-white mb-10 ">Favorites</h1>
+						<p className="dark:text-white">Mark images as a favorite with the star button next to them. View the images later here.</p>
+						<div className="flex flex-row">
+							<div className="flex justify-center ">
+								<Link linkText="Explore Favorites" />
+							</div>
+						</div>
+					</div>
+				</div>
 
 			</div>
 
