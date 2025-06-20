@@ -19,3 +19,7 @@
 .font {
 	font-family: "Rajdhani-Regular";
 }
+
+* {
+	@apply transition-colors duration-200;
+}

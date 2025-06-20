@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
 import Stack from "./blocks/Components/Stack/Stack"
 import Link from "./components/Link"
 import Navbar from "./components/Navbar"
+import { useLocalStorage } from "usehooks-ts"
 
 
 
@@ -11,18 +11,7 @@ import Navbar from "./components/Navbar"
 
 
 const App = () => {
-
-	const [theme, setTheme] = useState<string>("light")
-
-	useEffect(() => {
-		let currentTheme = localStorage.getItem("theme") || "light"
-		setTheme(currentTheme)
-	})
-
-
-
-
-
+	const [theme] = useLocalStorage('theme', 'dark')
 
 	return (
 		<>
@@ -46,7 +35,7 @@ const App = () => {
 				<div className="flex justify-center mt-16 mb-16">
 					<div className="flex flex-col m-18">
 						<h1 className="flex flex-start text-5xl font-extrabold dark:text-white mb-10">Mars</h1>
-						<p className="dark:text-white">Mars is the fourth planet from the Sun in our solar system. Often called the "Red Planet" because of its reddish appearance due to iron oxide (rust) on its surface. Here you can explore pictures of Mars and it's rovers.</p>
+						<p className="text-balance dark:text-white">Mars is the fourth planet from the Sun in our solar system. Often called the "Red Planet" because of its reddish appearance due to iron oxide (rust) on its surface. Here you can explore pictures of Mars and it's rovers.</p>
 						<div className="flex flex-row">
 							<div className="flex justify-center ">
 								<Link linkText="Explore Mars" />
