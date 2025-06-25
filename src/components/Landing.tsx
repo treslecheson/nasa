@@ -1,7 +1,6 @@
 import Stack from "../blocks/Components/Stack/Stack"
 import { useLocalStorage } from "usehooks-ts"
 import LinkFlowBite from "./LinkFlowBite"
-import { Datepicker } from "flowbite-react"
 
 
 const Landing = () => {
@@ -28,16 +27,16 @@ const Landing = () => {
 
 
 					<div className="flex flex-col m-18">
-						<h1 className="flex flex-start text-5xl font-extrabold dark:text-white mb-10 ">Favorites</h1>
-						<p className="dark:text-white">Mark images as a favorite with the star button next to them. View the images later here.</p>
-						<div className="flex flex-row">
+						<h1 className="flex  justify-center text-5xl font-extrabold dark:text-white mb-10 ">Favorite</h1>
+						<p className="dark:text-white">Mark an image as your favorite. View the image later here.</p>
+						<div className="flex flex-row justify-center">
 							<div className="flex justify-center ">
-								<LinkFlowBite linkText="Explore Favorites" linkTo="/favorites" />
+								<LinkFlowBite linkText="Explore Your Favorite Picture" linkTo="/favorite" />
 							</div>
 						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</>
 	)

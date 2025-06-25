@@ -19,11 +19,8 @@ const Navbar = () => {
 				<Link to="/apod" className="font-bold rounded-lg px-3 py-2 text-gray-50 hover:bg-gray-800 hover:text-gray-50">
 					APOD
 				</Link>
-				<Link to="/earth" className="font-bold rounded-lg px-3 py-2 text-gray-50 hover:bg-gray-800 hover:text-gray-50">
-					Earth
-				</Link>
-				<Link to="/favorites" className="font-bold rounded-lg px-3 py-2 text-gray-50 hover:bg-gray-800 hover:text-gray-50">
-					Favorites
+				<Link to="/favorite" className="font-bold rounded-lg px-3 py-2 text-gray-50 hover:bg-gray-800 hover:text-gray-50">
+					Favorite
 				</Link>
 			</div>
 			<div >
