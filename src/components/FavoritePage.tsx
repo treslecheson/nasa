@@ -21,7 +21,7 @@ const FavoritePage = () => {
 		<>
 			<div data-theme={theme} className="bg-white flex-col    dark:bg-navbar py-2 font">
 				<div className="p-56 bg-[url(../src/assets/space.jpg)] bg-contain bg-size[100vw] font">
-					<h1 className="flex justify-center text-8xl font-extrabold text-white ">Favorites</h1></div>
+					<h1 className="flex justify-center text-8xl font-extrabold text-white ">Favorite</h1></div>
 				<div className="flex flex-col justify-center  m-16">
 					<div className="flex justify-center m-2">
 						<h2 className="flex justify-center text-3xl font-extrabold dark:text-white text-black mb-10 ">{favs?.title}</h2>
